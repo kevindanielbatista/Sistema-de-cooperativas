@@ -1,8 +1,6 @@
 package aplicacion;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+import java.awt.*;
 import javax.swing.*;
 
 public class VentanaPrincipal {
@@ -37,11 +35,27 @@ public class VentanaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		JButton jb1 = new JButton("Iniciar sesion");
+		JButton button1 = new JButton("Iniciar sesion");
+		button1.setBounds(50, 300, 100,50);
+		JButton button2 = new JButton("Administrador");
+		button2.setBounds(50, 350, 100,50);
+		JLabel label1 = new JLabel("Usuario");
+		label1.setBounds(50, 75, 100, 30);
+		JLabel label1 = new JLabel("Contraseña");
+		label1.setBounds(50, 140, 100, 30);
+		JTextField text1 = new JTextField();
+		text1.setBounds(100, 100, 100, 28);
+		JPasswordField contrasena = new JPasswordField();
+		text2.setBounds(100, 165, 100, 28);
 		
-		jb1.setBounds(50,50,130,130);
-		frame.add(jb1)
-		frame.setBounds(100, 100, 450, 300);
+		frame.add(button1);
+		frame.add(button2);
+		frame.add(label1);
+		frame.add(label2);
+		frame.add(text1);
+		frame.add(contrasena);
+		frame.setSize(800, 600);
+		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
