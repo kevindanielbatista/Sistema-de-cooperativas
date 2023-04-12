@@ -5,6 +5,6 @@
  * @author bibi
  *
  */
-module Aplicacion {
+module Aplicacion  {
 	requires java.desktop;
 }

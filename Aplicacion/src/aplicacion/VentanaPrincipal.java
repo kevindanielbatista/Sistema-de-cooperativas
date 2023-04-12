@@ -2,8 +2,11 @@ package aplicacion;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class VentanaPrincipal {
+@SuppressWarnings("serial")
+public class VentanaPrincipal extends JFrame {
 
 	private JFrame frame;
 	private JTable table;
@@ -64,6 +67,14 @@ public class VentanaPrincipal {
 		frame.getContentPane().add(table);
 		
 		JButton registrarse = new JButton("Registrarse");
+		registrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				VentanaRegistro regis = new VentanaRegistro();
+				regis.frame.setVisible(true);
+			   
+			}
+		});
 		registrarse.setBounds(294, 432, 160, 50);
 		frame.getContentPane().add(registrarse);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
