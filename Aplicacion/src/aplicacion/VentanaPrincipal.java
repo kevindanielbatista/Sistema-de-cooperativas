@@ -6,6 +6,7 @@ import javax.swing.*;
 public class VentanaPrincipal {
 
 	private JFrame frame;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -35,28 +36,36 @@ public class VentanaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		JButton button1 = new JButton("Iniciar sesion");
-		button1.setBounds(294, 305, 160,50);
-		JButton button2 = new JButton("Administrador");
-		button2.setBounds(294, 367, 160,50);
+		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+		JButton inicSesion = new JButton("Iniciar sesion");
+		inicSesion.setBounds(294, 305, 160,50);
+		JButton administrador = new JButton("Administrador");
+		administrador.setBounds(294, 367, 160,50);
 		JLabel label1 = new JLabel("Usuario");
-		label1.setBounds(334, 59, 100, 30);
+		label1.setBounds(334, 59, 55, 15);
 		JLabel label2 = new JLabel("Contraseña");
-		label2.setBounds(334, 169, 100, 30);
+		label2.setBounds(334, 169, 83, 15);
 		JTextField text1 = new JTextField();
 		text1.setBounds(294, 101, 160, 28);
 		JPasswordField contrasena = new JPasswordField();
 		contrasena.setBounds(294, 211, 160, 28);
 		
-		frame.getContentPane().add(button1);
-		frame.getContentPane().add(button2);
+		frame.getContentPane().add(inicSesion);
+		frame.getContentPane().add(administrador);
 		frame.getContentPane().add(label1);
 		frame.getContentPane().add(label2);
 		frame.getContentPane().add(text1);
 		frame.getContentPane().add(contrasena);
 		frame.setSize(800, 600);
 		frame.getContentPane().setLayout(null);
+		
+		table = new JTable();
+		table.setBounds(165, 211, 1, 1);
+		frame.getContentPane().add(table);
+		
+		JButton registrarse = new JButton("Registrarse");
+		registrarse.setBounds(294, 432, 160, 50);
+		frame.getContentPane().add(registrarse);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }
