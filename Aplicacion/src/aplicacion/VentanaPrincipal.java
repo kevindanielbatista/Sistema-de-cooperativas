@@ -36,26 +36,26 @@ public class VentanaPrincipal {
 	private void initialize() {
 		frame = new JFrame();
 		JButton button1 = new JButton("Iniciar sesion");
-		button1.setBounds(50, 300, 100,50);
+		button1.setBounds(294, 305, 160,50);
 		JButton button2 = new JButton("Administrador");
-		button2.setBounds(50, 350, 100,50);
+		button2.setBounds(294, 367, 160,50);
 		JLabel label1 = new JLabel("Usuario");
-		label1.setBounds(50, 75, 100, 30);
+		label1.setBounds(334, 59, 100, 30);
 		JLabel label2 = new JLabel("Contraseña");
-		label2.setBounds(50, 140, 100, 30);
+		label2.setBounds(334, 169, 100, 30);
 		JTextField text1 = new JTextField();
-		text1.setBounds(100, 100, 100, 28);
+		text1.setBounds(294, 101, 160, 28);
 		JPasswordField contrasena = new JPasswordField();
-		contrasena.setBounds(100, 165, 100, 28);
+		contrasena.setBounds(294, 211, 160, 28);
 		
-		frame.add(button1);
-		frame.add(button2);
-		frame.add(label1);
-		frame.add(label2);
-		frame.add(text1);
-		frame.add(contrasena);
+		frame.getContentPane().add(button1);
+		frame.getContentPane().add(button2);
+		frame.getContentPane().add(label1);
+		frame.getContentPane().add(label2);
+		frame.getContentPane().add(text1);
+		frame.getContentPane().add(contrasena);
 		frame.setSize(800, 600);
-		frame.setLayout(null);
+		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
