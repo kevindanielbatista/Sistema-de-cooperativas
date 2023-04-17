@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class VentanaPrincipal extends JFrame {
+public class RegistroPrincipal extends JFrame {
 
 	private JFrame frame;
 	private JTable table;
@@ -18,7 +18,7 @@ public class VentanaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipal window = new VentanaPrincipal();
+					RegistroPrincipal window = new RegistroPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public VentanaPrincipal() {
+	public RegistroPrincipal() {
 		initialize();
 	}
 
