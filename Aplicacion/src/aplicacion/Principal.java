@@ -5,23 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Font;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import javax.swing.JTabbedPane;
-import java.awt.FlowLayout;
-import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
 
 public class Principal extends JFrame {
 
-	private JPanel VentanaPrincipal;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -43,57 +35,27 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
-		JFrame frame = new JFrame("Sistema de Cooerativa");
+		setTitle("SISTEMA DE COOPERATIVA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 400, 500, 400);
-		VentanaPrincipal = new JPanel();
-		FlowLayout fl_VentanaPrincipal = (FlowLayout) VentanaPrincipal.getLayout();
-		fl_VentanaPrincipal.setAlignment(FlowLayout.LEFT);
-		VentanaPrincipal.setForeground(new Color(0, 0, 0));
-		VentanaPrincipal.setBackground(new Color(192, 192, 192));
-		VentanaPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setSize(800, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(VentanaPrincipal);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setForeground(new Color(0, 0, 0));
-		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		VentanaPrincipal.add(menuBar);
+		JMenu mnTRANSACCIONES = new JMenu("TRANSACCIONES");
+		mnTRANSACCIONES.setBounds(0, 27, 115, 26);
+		contentPane.add(mnTRANSACCIONES);
 		
-		JMenu Inicio = new JMenu("Inicio");
-		menuBar.add(Inicio);
+		JMenu mnDEBITO = new JMenu("DEBITO");
+		mnTRANSACCIONES.add(mnDEBITO);
 		
-		JMenuItem Estado = new JMenuItem("Ver estado");
-		Inicio.add(Estado);
+		JMenu mnREGISTRO = new JMenu("REGISTRO");
+		mnREGISTRO.setBounds(0, 0, 115, 26);
+		contentPane.add(mnREGISTRO);
 		
-		JMenuItem Transaccion = new JMenuItem("Transacciones");
-		Inicio.add(Transaccion);
-		
-		JMenu Registro = new JMenu("Registro");
-		menuBar.add(Registro);
-		
-		JMenuItem Añadir = new JMenuItem("Añadir registro");
-		Registro.add(Añadir);
-		
-		JMenuItem Eliminar = new JMenuItem("Eliminar registro");
-		Registro.add(Eliminar);
-		
-		JMenu Solicitudes = new JMenu("Solicitudes");
-		menuBar.add(Solicitudes);
-		
-		JMenu Reclamaciones = new JMenu("Reclamaciones");
-		menuBar.add(Reclamaciones);
-		
-		JMenu Historial = new JMenu("Historial");
-		menuBar.add(Historial);
-		
-		JMenu Reportes = new JMenu("Reportes");
-		menuBar.add(Reportes);
-		
-		JMenu Help = new JMenu("Ayuda");
-		menuBar.add(Help);
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
+		JMenu mnCUENTAS = new JMenu("CUENTAS");
+		mnREGISTRO.add(mnCUENTAS);
 	}
 }
