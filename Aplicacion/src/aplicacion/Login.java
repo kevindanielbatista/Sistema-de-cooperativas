@@ -10,11 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
-import javax.swing.SwingConstants;
+import java.awt.Toolkit;
+
 import javax.swing.JPasswordField;
-import java.awt.Canvas;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Login extends JFrame {
 
@@ -43,10 +44,12 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\icons\\iPrincipal.jpg"));
 		setTitle("SISTEMA DE COOPERATIVA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 297);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 210, 105));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -54,7 +57,7 @@ public class Login extends JFrame {
 		
 		JLabel lblLogin = new JLabel("LOGIN");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblLogin.setBounds(74, 11, 67, 31);
+		lblLogin.setBounds(68, 11, 67, 31);
 		contentPane.add(lblLogin);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
@@ -68,11 +71,13 @@ public class Login extends JFrame {
 		contentPane.add(lblContraseña);
 		
 		textUsuario = new JTextField();
+		textUsuario.setToolTipText("Ingresar usuario ");
 		textUsuario.setBounds(95, 69, 100, 20);
 		contentPane.add(textUsuario);
 		textUsuario.setColumns(10);
 		
-		JButton btnIniciarSesion = new JButton("INICIAR SECCION");
+		JButton btnIniciarSesion = new JButton("INICIAR SESION");
+		btnIniciarSesion.setToolTipText("Iniciar sesion");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -95,15 +100,23 @@ public class Login extends JFrame {
 		});
 		
 		btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnIniciarSesion.setBounds(68, 145, 127, 23);
+		btnIniciarSesion.setBounds(44, 147, 127, 23);
 		contentPane.add(btnIniciarSesion);
 		
 		JButton btnAdministrador = new JButton("ADMINISTRADOR");
+		btnAdministrador.setToolTipText("Ingresar como administrador");
+		btnAdministrador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Administrador admin = new Administrador();
+				admin.setVisible(true);
+			}
+		});
 		btnAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnAdministrador.setBounds(68, 191, 127, 23);
+		btnAdministrador.setBounds(44, 191, 127, 23);
 		contentPane.add(btnAdministrador);
 		
 		ContraseñaField = new JPasswordField();
+		ContraseñaField.setToolTipText("Ingresar contraseña");
 		ContraseñaField.setBounds(95, 94, 100, 20);
 		contentPane.add(ContraseñaField);
 		
