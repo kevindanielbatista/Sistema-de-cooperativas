@@ -1,12 +1,31 @@
 package aplicacion;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Toolkit;
+
+import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JSeparator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 public class Login extends JFrame {
 
-	private JPanel Login;
+	private JPanel contentPane;
+	private JPasswordField ContraseñaField;
+	private JTextField textUsuario;
 
 	/**
 	 * Launch the application.
@@ -15,8 +34,8 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login();
-					window.frame.setVisible(true);
+					Login frame = new Login();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -25,47 +44,185 @@ public class Login extends JFrame {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public Login() {
-		initialize();
-	}
+		setResizable(false);
+		setBackground(new Color(85, 107, 47));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\icons\\iPrincipal.jpg"));
+		setTitle("SISTEMA DE COOPERATIVA");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(400, 150, 561, 376);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		Login = new JPanel();
-		FlowLayout fl_Login = (FlowLayout) Login.getLayout();
-		fl_Login.setAlignment(FlowLayout.LEFT);
-		Login.setForeground(new Color(0, 0, 0));
-		Login.setBackground(new Color(192, 192, 192));
-		Login.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		JButton button1 = new JButton("Iniciar sección");
-		button1.setBounds(100,300,200,50);
-		JButton button2 = new JButton("Administrador");
-		button2.setBounds(100,380, 200,50);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblUsuario = new JLabel("Usuario");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblUsuario.setBounds(48, 128, 65, 14);
+		contentPane.add(lblUsuario);
+		
+		JLabel lblContraseña = new JLabel("Contraseña");
+		lblContraseña.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblContraseña.setBounds(48, 186, 66, 14);
+		contentPane.add(lblContraseña);
+		
+		textUsuario = new JTextField();
+		textUsuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (textUsuario.getText().equals("Ingrese su nombre de usuario")) {
+					textUsuario.setText("");
+					textUsuario.setForeground(Color.black);
+				}
+				if (String.valueOf(ContraseñaField.getPassword()).isEmpty()) {
+					ContraseñaField.setText("********");
+					ContraseñaField.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		});
+		textUsuario.setBorder(null);
+		textUsuario.setForeground(Color.LIGHT_GRAY);
+		textUsuario.setText("Ingrese su nombre de usuario");
+		textUsuario.setToolTipText("Ingresar usuario ");
+		textUsuario.setBounds(48, 153, 229, 20);
+		contentPane.add(textUsuario);
+		textUsuario.setColumns(10);
+		
+		JButton btnIniciarSesion = new JButton("INICIAR SESION");
+		btnIniciarSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnIniciarSesion.setBackground(Color.blue);
+				btnIniciarSesion.setForeground(Color.white);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnIniciarSesion.setBackground(SystemColor.inactiveCaption);
+				btnIniciarSesion.setForeground(Color.black);
+			}
+		});
+		btnIniciarSesion.setBackground(SystemColor.inactiveCaption);
+		btnIniciarSesion.setToolTipText("Iniciar sesion");
+		btnIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				
-		JLabel label1 = new JLabel("Usuario");
-		label1.setBounds(100,75, 200,30);
-		JTextField text1 = new JTextField();
-		text1.setBounds(100,100, 100,28);
+				char[] usuario = ContraseñaField.getPassword();
+				String usuarioFinal = new String(usuario);
+				
+				if (textUsuario.getText().equals("Wilmi") && usuarioFinal.equals("1974")) {
+					dispose();
+					JOptionPane.showMessageDialog(null, "Acesso concedido", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+					Principal p = new Principal();
+					p.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrectos", "ERROR", 
+							JOptionPane.INFORMATION_MESSAGE);
+					textUsuario.setText("Ingrese su nombre de usuario");
+					textUsuario.setForeground(Color.LIGHT_GRAY);
+					ContraseñaField.setText("********");
+					ContraseñaField.setForeground(Color.LIGHT_GRAY);
+					textUsuario.requestFocus();
+				}
+			}
+		});
+		textUsuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (textUsuario.getText().equals("Ingrese su nombre de usuario")) {
+					textUsuario.setText("");
+					textUsuario.setForeground(Color.black);
+				}
+				if (String.valueOf(ContraseñaField.getPassword()).isEmpty()) {
+					ContraseñaField.setText("********");
+					ContraseñaField.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		});
+		btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnIniciarSesion.setBounds(86, 258, 127, 23);
+		contentPane.add(btnIniciarSesion);
 		
-		JLabel label2 = new JLabel("Contraseña");
-		label2.setBounds(100,140, 200,30);
+		JButton btnAdministrador = new JButton("ADMINISTRADOR");
+		btnAdministrador.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnAdministrador.setBackground(Color.blue);
+				btnAdministrador.setForeground(Color.white);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnAdministrador.setBackground(SystemColor.inactiveCaption);
+				btnAdministrador.setForeground(Color.black);
+			}
+		});
+		btnAdministrador.setBackground(SystemColor.inactiveCaption);
+		btnAdministrador.setToolTipText("Ingresar como administrador");
+		btnAdministrador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Administrador admin = new Administrador();
+				admin.setVisible(true);
+			}
+		});
+		btnAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAdministrador.setBounds(86, 292, 127, 23);
+		contentPane.add(btnAdministrador);
 		
-		JPasswordField contrasena = new JPasswordField();
-		contrasena.setBounds(100,165, 200,28);
+		ContraseñaField = new JPasswordField();
+		ContraseñaField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (String.valueOf(ContraseñaField.getPassword()).equals("********")) {
+					ContraseñaField.setText("");
+					ContraseñaField.setForeground(Color.black);
+				}
+				if (textUsuario.getText().isEmpty()) {
+					textUsuario.setText("Ingrese su nombre de usuario");
+					textUsuario.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		});
+		ContraseñaField.setText("********");
+		ContraseñaField.setForeground(Color.LIGHT_GRAY);
+		ContraseñaField.setBorder(null);
+		ContraseñaField.setToolTipText("Ingresar contraseña");
+		ContraseñaField.setBounds(48, 211, 229, 20);
+		contentPane.add(ContraseñaField);
 		
-		frame.add(label1); 
-		frame.add(text1);
-		frame.add(label2);
-		frame.add(contrasena);
-		frame.add(button1);
-		frame.add(button2);
-		frame.setLayout(null);
-		frame.setSize(800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel lnlLogoEmpresa = new JLabel("");
+		lnlLogoEmpresa.setToolTipText("Logo de la empresa");
+		lnlLogoEmpresa.setBackground(Color.WHITE);
+		lnlLogoEmpresa.setLabelFor(this);
+		lnlLogoEmpresa.setIcon(new ImageIcon("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\Sistema-de-cooperativas-main\\Aplicacion\\src\\Image\\iEmpresa.png"));
+		lnlLogoEmpresa.setBounds(108, 11, 84, 82);
+		contentPane.add(lnlLogoEmpresa);
+		
+		JLabel lblLogin = new JLabel("       LOGIN");
+		lblLogin.setBounds(86, 93, 127, 25);
+		contentPane.add(lblLogin);
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
+		
+		JLabel lbliFondo = new JLabel("");
+		lbliFondo.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lbliFondo.setToolTipText("Imagen de la empresa");
+		lbliFondo.setBackground(new Color(0, 0, 0));
+		lbliFondo.setIcon(new ImageIcon("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\Sistema-de-cooperativas-main\\Aplicacion\\src\\Image\\iFondo.png"));
+		lbliFondo.setBounds(304, 0, 241, 337);
+		contentPane.add(lbliFondo);
+		
+		JSeparator separatorUsuario = new JSeparator();
+		separatorUsuario.setBackground(Color.BLACK);
+		separatorUsuario.setBounds(48, 173, 229, 2);
+		contentPane.add(separatorUsuario);
+		
+		JSeparator separatoContraseña = new JSeparator();
+		separatoContraseña.setBackground(Color.BLACK);
+		separatoContraseña.setBounds(48, 231, 229, 2);
+		contentPane.add(separatoContraseña);
+		
+		
 	}
 }

@@ -5,24 +5,44 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Font;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import javax.swing.JTabbedPane;
-import java.awt.FlowLayout;
-import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
+import javax.swing.JCheckBoxMenuItem;
+import java.awt.Dimension;
+import javax.swing.JMenuBar;
+import java.awt.Label;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Font;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JToolBar;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JDesktopPane;
+import javax.swing.JButton;
+import javax.swing.border.LineBorder;
+import java.awt.Panel;
+import javax.swing.JTabbedPane;
+import javax.swing.JInternalFrame;
+import java.awt.Rectangle;
+import javax.swing.JTextPane;
+import javax.swing.JComboBox;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.Toolkit;
+import javax.swing.JScrollBar;
+import java.awt.SystemColor;
+import javax.swing.Box;
 
 public class Principal extends JFrame {
 
-	private JPanel VentanaPrincipal;
-
+	private JPanel contentPrincipal;
+	private Button btnCerrarSesion;	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -38,62 +58,228 @@ public class Principal extends JFrame {
 			}
 		});
 	}
-
+	
+	public Principal() {
+		inicializar();
+	}
+	
 	/**
 	 * Create the frame.
 	 */
-	public Principal() {
-		JFrame frame = new JFrame("Sistema de Cooerativa");
+	
+	public void inicializar() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\icons\\iPrincipal.jpg"));
+		setTitle("SISTEMA DE COOPERATIVA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 400, 500, 400);
-		VentanaPrincipal = new JPanel();
-		FlowLayout fl_VentanaPrincipal = (FlowLayout) VentanaPrincipal.getLayout();
-		fl_VentanaPrincipal.setAlignment(FlowLayout.LEFT);
-		VentanaPrincipal.setForeground(new Color(0, 0, 0));
-		VentanaPrincipal.setBackground(new Color(192, 192, 192));
-		VentanaPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(400, 150, 600, 500);
+		contentPrincipal = new JPanel();
+		contentPrincipal.setBackground(new Color(153, 255, 153));
+		contentPrincipal.setBorder(null);
 
-		setContentPane(VentanaPrincipal);
+		setContentPane(contentPrincipal);
+		contentPrincipal.setLayout(null);
+		
+		JPanel pContenido = new JPanel();
+		pContenido.setBackground(SystemColor.window);
+		pContenido.setBounds(0, 81, 584, 380);
+		contentPrincipal.add(pContenido);
+		pContenido.setLayout(null);
+		
+		JTextPane textBienvenido = new JTextPane();
+		textBienvenido.setForeground(Color.RED);
+		textBienvenido.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		textBienvenido.setText("BIENVENIDO!!!");
+		textBienvenido.setBounds(38, 37, 192, 43);
+		pContenido.add(textBienvenido);
+		
+		JTextPane txtpnEsteEsEl = new JTextPane();
+		txtpnEsteEsEl.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtpnEsteEsEl.setText("Este es el sistema de gestion financiera <nombre>.");
+		txtpnEsteEsEl.setBounds(38, 103, 243, 167);
+		pContenido.add(txtpnEsteEsEl);
+		
+		btnCerrarSesion = new Button("Cerrar Sesion");
+		btnCerrarSesion.setForeground(new Color(0, 0, 0));
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login l = new Login();
+				l.setVisible(true);
+			}
+		});
+		btnCerrarSesion.setFont(new Font("Arial", Font.BOLD, 12));
+		btnCerrarSesion.setBackground(Color.LIGHT_GRAY);
+		btnCerrarSesion.setBounds(496, 0, 86, 25);
+		contentPrincipal.add(btnCerrarSesion);
+		
+		JToolBar toolBar = new JToolBar();
+		toolBar.setBackground(Color.LIGHT_GRAY);
+		toolBar.setBounds(0, 0, 319, 25);
+		contentPrincipal.add(toolBar);
+		
+		Button btnAtras = new Button("Atras");
+		btnAtras.setBackground(Color.LIGHT_GRAY);
+		toolBar.add(btnAtras);
+		
+		Button btnAdelante = new Button("Adelante\r\n");
+		btnAdelante.setFont(null);
+		btnAdelante.setForeground(Color.BLACK);
+		btnAdelante.setBackground(Color.LIGHT_GRAY);
+		toolBar.add(btnAdelante);
+		
+		Button btnAyuda = new Button("Ayuda");
+		btnAyuda.setBackground(Color.LIGHT_GRAY);
+		toolBar.add(btnAyuda);
+		
+		Button btnConfiguracion = new Button("Configuracion");
+		toolBar.add(btnConfiguracion);
+		btnConfiguracion.setFont(new Font("Dialog", Font.BOLD, 12));
+		btnConfiguracion.setBackground(Color.LIGHT_GRAY);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setForeground(new Color(0, 0, 0));
-		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		VentanaPrincipal.add(menuBar);
+		menuBar.setBounds(0, 42, 584, 43);
+		contentPrincipal.add(menuBar);
+		menuBar.setBackground(new Color(153, 255, 153));
 		
-		JMenu Inicio = new JMenu("Inicio");
-		menuBar.add(Inicio);
+		JMenu mnRegistro = new JMenu("REGISTRO");
+		menuBar.add(mnRegistro);
 		
-		JMenuItem Estado = new JMenuItem("Ver estado");
-		Inicio.add(Estado);
+		JMenu mnCUENTAS = new JMenu("CUENTAS");
+		mnRegistro.add(mnCUENTAS);
 		
-		JMenuItem Transaccion = new JMenuItem("Transacciones");
-		Inicio.add(Transaccion);
+		JMenuItem mntmAgregarCuenta = new JMenuItem("AGREGAR CUENTA");
+		mnCUENTAS.add(mntmAgregarCuenta);
+		mntmAgregarCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AgregarCuenta r = new AgregarCuenta();
+				r.setBounds(0, 81, 582, 380);
+				r.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(r, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
+		JMenuItem mntmeEliminarCuenta = new JMenuItem("ELIMINAR CUENTA");
+		mnCUENTAS.add(mntmeEliminarCuenta);
+		mntmeEliminarCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EliminarCuenta eliminarCuenta = new EliminarCuenta();
+				eliminarCuenta.setBounds(0, 81, 582, 380);
+				eliminarCuenta.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(eliminarCuenta, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
+				
+		JMenuItem mntmSuspenderCuenta = new JMenuItem("SUSPENDER CUENTA");
+		mnCUENTAS.add(mntmSuspenderCuenta);
+		mntmSuspenderCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SuspenderCuenta suspenderCuenta = new SuspenderCuenta();
+				suspenderCuenta.setBounds(0, 81, 582, 380);
+				suspenderCuenta.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(suspenderCuenta, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
 		
-		JMenu Registro = new JMenu("Registro");
-		menuBar.add(Registro);
+		JMenuItem mntmRetenerCuenta = new JMenuItem("RETENER CUENTA");
+		mnCUENTAS.add(mntmRetenerCuenta);
 		
-		JMenuItem Añadir = new JMenuItem("Añadir registro");
-		Registro.add(Añadir);
+		JMenu mnHistorial = new JMenu("HISTORIAL");
+		mnRegistro.add(mnHistorial);
 		
-		JMenuItem Eliminar = new JMenuItem("Eliminar registro");
-		Registro.add(Eliminar);
+		JMenuItem mntmCuentasAgregadas = new JMenuItem("CUENTAS AGREGADAS");
+		mnHistorial.add(mntmCuentasAgregadas);
 		
-		JMenu Solicitudes = new JMenu("Solicitudes");
-		menuBar.add(Solicitudes);
+		JMenuItem mntmCuentasEliminadas = new JMenuItem("CUENTAS ELIMINADAS");
+		mnHistorial.add(mntmCuentasEliminadas);
 		
-		JMenu Reclamaciones = new JMenu("Reclamaciones");
-		menuBar.add(Reclamaciones);
+		JMenuItem mntmCuentasSuspendidas = new JMenuItem("CUENTAS SUSPENDIDAS");
+		mnHistorial.add(mntmCuentasSuspendidas);
 		
-		JMenu Historial = new JMenu("Historial");
-		menuBar.add(Historial);
+		JMenuItem mntmCuentasRetenidas = new JMenuItem("CUENTAS RETENIDAS");
+		mnHistorial.add(mntmCuentasRetenidas);
 		
-		JMenu Reportes = new JMenu("Reportes");
-		menuBar.add(Reportes);
+		JMenuItem mntmCuentasAbandonadas = new JMenuItem("CUENTAS ABANDONADAS");
+		mnHistorial.add(mntmCuentasAbandonadas);
+		mntmRetenerCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RetenerCuenta retenerCuenta = new RetenerCuenta();
+				retenerCuenta.setBounds(0, 81, 582, 380);
+				retenerCuenta.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(retenerCuenta, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
 		
-		JMenu Help = new JMenu("Ayuda");
-		menuBar.add(Help);
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
+		JMenu mnCuentas = new JMenu("CUENTAS");
+		menuBar.add(mnCuentas);
+		
+		JMenuItem mntmCuentasAhorros = new JMenuItem("CUENTAS DE AHORROS");
+		mnCuentas.add(mntmCuentasAhorros);
+		
+		JMenuItem mntmCuentasCreditos = new JMenuItem("CUENTAS DE CREDITO");
+		mnCuentas.add(mntmCuentasCreditos);
+		
+		JMenuItem mntmCuentasAportaciones = new JMenuItem("CUENTAS DE APORTACIONES");
+		mnCuentas.add(mntmCuentasAportaciones);
+		
+		JMenuItem mntmCuentasJuveniles = new JMenuItem("CUENTAS JUVENILES");
+		mnCuentas.add(mntmCuentasJuveniles);
+		JMenu mnTransacciones = new JMenu("TRANSACCIONES");
+		menuBar.add(mnTransacciones);
+		
+		JMenu mnNuevaTransaccion = new JMenu("NUEVA TRANSACCION");
+		mnTransacciones.add(mnNuevaTransaccion);
+		
+		JMenuItem mntmDeposito = new JMenuItem("DEPOSITO");
+		mntmDeposito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Deposito deposito = new Deposito();
+				deposito.setBounds(0, 81, 582, 380);
+				deposito.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(deposito, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
+		mnNuevaTransaccion.add(mntmDeposito);
+		
+		JMenuItem mntmRetiro = new JMenuItem("RETIRO");
+		mntmRetiro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Retiro retiro = new Retiro();
+				retiro.setBounds(0, 81, 582, 380);
+				retiro.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(retiro, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
+		mnNuevaTransaccion.add(mntmRetiro);
+		
+		JMenu mnReclamaciones = new JMenu("RECLAMACIONES");
+		menuBar.add(mnReclamaciones);
+		
+		JMenu mnReportes = new JMenu("REPORTES");
+		menuBar.add(mnReportes);
+		
+		
 	}
 }
