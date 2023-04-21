@@ -14,6 +14,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.Color;
 
 public class Administrador extends JFrame {
 
@@ -41,10 +42,11 @@ public class Administrador extends JFrame {
 	 * Create the frame.
 	 */
 	public Administrador() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\icons\\iPrincipal.jpg"));
 		setTitle("ADMINISTRADOR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 395, 230);
+		setBounds(420, 150, 395, 230);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -79,8 +81,10 @@ public class Administrador extends JFrame {
 		contentPane.add(ContraseñaField);
 		
 		JButton btnIniciarSesion = new JButton("INICIAR SESION");
+		btnIniciarSesion.setForeground(new Color(0, 0, 0));
+		btnIniciarSesion.setBackground(new Color(0, 255, 102));
 		btnIniciarSesion.setToolTipText("Presiona para iniciar sesion");
-		btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
