@@ -1,10 +1,8 @@
-package aplicacion;
+package aplicacion2;
+
 
 import javax.swing.JPanel;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -13,14 +11,16 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SuspenderCuenta extends JPanel {
+public class Retiro extends JPanel {
 	private JTextField textField;
 
 	/**
 	 * Create the panel.
 	 */
-	public SuspenderCuenta() {
+	public Retiro() {
 		setBackground(SystemColor.menu);
 		setBounds(new Rectangle(0, 81, 584, 380));
 		setLayout(null);
@@ -48,19 +48,19 @@ public class SuspenderCuenta extends JPanel {
 		textArea.setBounds(94, 271, 186, 81);
 		add(textArea);
 		
-		JLabel lblSuspenderCuenta = new JLabel("SUSPENDER CUENTA");
-		lblSuspenderCuenta.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSuspenderCuenta.setBounds(27, 11, 121, 15);
-		add(lblSuspenderCuenta);
+		JLabel lblDeposito = new JLabel("RETIRO");
+		lblDeposito.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDeposito.setBounds(27, 11, 121, 15);
+		add(lblDeposito);
 		
-		JButton btnTerminar_1 = new JButton("Terminar");
-		btnTerminar_1.addActionListener(new ActionListener() {
+		JButton btnTerminar = new JButton("Terminar");
+		btnTerminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Cuenta Suspendida", "", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Retiro realizado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		btnTerminar_1.setBounds(485, 346, 89, 23);
-		add(btnTerminar_1);
+		btnTerminar.setBounds(485, 346, 89, 23);
+		add(btnTerminar);
 
 	}
 

@@ -1,4 +1,5 @@
-package aplicacion;
+package aplicacion2;
+
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;

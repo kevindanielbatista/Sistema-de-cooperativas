@@ -1,4 +1,5 @@
-package aplicacion;
+package aplicacion2;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
