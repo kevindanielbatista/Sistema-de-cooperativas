@@ -43,7 +43,7 @@ public class AgregarCuenta extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textTelefono_4;
 	private JTextField textCorreo;
 
 	/**
@@ -132,11 +132,11 @@ public class AgregarCuenta extends JPanel {
 		lblTelefono.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblTelefono);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(82, 207, 121, 19);
-		textField_4.setToolTipText("ingresar numero de telefono");
-		textField_4.setColumns(10);
-		add(textField_4);
+		textTelefono_4 = new JTextField();
+		textTelefono_4.setBounds(82, 207, 121, 19);
+		textTelefono_4.setToolTipText("ingresar numero de telefono");
+		textTelefono_4.setColumns(10);
+		add(textTelefono_4);
 		
 		JLabel lblSexo_1 = new JLabel("Sexo:");
 		lblSexo_1.setBounds(25, 184, 70, 15);
@@ -181,18 +181,6 @@ public class AgregarCuenta extends JPanel {
 		spinnerAño.setToolTipText("Ingresar año de nacimiento");
 		add(spinnerAño);
 		
-		JButton btnTerminar_1 = new JButton("Terminar");
-		btnTerminar_1.setBounds(483, 346, 89, 23);
-		btnTerminar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int dia = (Integer)spinnerDia_1.getValue();
-				int anio = (Integer)spinnerAño.getValue();
-				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getToolTipText(), anio, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
-				JOptionPane.showMessageDialog(null, "Registro completado", "", JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-		add(btnTerminar_1);
-		
 		JLabel lblEstadoCivil_1 = new JLabel("Estado civil:");
 		lblEstadoCivil_1.setBounds(224, 184, 77, 14);
 		lblEstadoCivil_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -201,11 +189,10 @@ public class AgregarCuenta extends JPanel {
 		JRadioButton rdbtnSoltero_1 = new JRadioButton("Soltero");
 		rdbtnSoltero_1.setBounds(302, 180, 70, 23);
 		add(rdbtnSoltero_1);
-		
+
 		JRadioButton rdbtnCasado_1 = new JRadioButton("Casado");
 		rdbtnCasado_1.setBounds(374, 180, 73, 23);
 		add(rdbtnCasado_1);
-		
 		
 		//Este objeto permite que solo se pueda elegir una opcion en el panel de los casados
 		ButtonGroup grupoCivil = new ButtonGroup();
@@ -216,6 +203,42 @@ public class AgregarCuenta extends JPanel {
 		ButtonGroup grupoSexo = new ButtonGroup();
 		grupoSexo.add(rdbtnHombre_1);
 		grupoSexo.add(rdbtnMujer_1);
+		
+		JButton btnTerminar_1 = new JButton("Terminar");
+		btnTerminar_1.setBounds(483, 346, 89, 23);
+		btnTerminar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int dia = (Integer)spinnerDia_1.getValue(); //Para convertir el valor del spinner de dias en int
+				int anio = (Integer)spinnerAño.getValue(); //para convertir el valor del spinner de anio en int
+				String civil = ""; //variable para almacenar valor estado civil
+				String sexo = ""; //variable para almacenar valor sexo del miembro
+				if (rdbtnCasado_1.isSelected()) { //esto determina cual de los dos botones esta seleccionado y toma el valor del apropiado
+					civil = rdbtnCasado_1.getText();
+				} else {
+					civil = rdbtnSoltero_1.getText();
+				}
+				
+				if (rdbtnHombre.isSelected()) {
+					sexo = rdbtnHombre.getText();
+				} else {
+					sexo = rdbtnMujer.getText();
+				}
+				
+				
+				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getName(),anio, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
+				JOptionPane.showMessageDialog(null, "Registro completado", "", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		add(btnTerminar_1);
+		
+		
+
+		
+
+		
+		
+
+		
 		
 	
 	}
