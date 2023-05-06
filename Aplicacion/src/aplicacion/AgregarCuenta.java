@@ -225,12 +225,7 @@ public class AgregarCuenta extends JPanel {
 				Integer anio = Integer.parseInt(spinnerAño.getValue().toString()); //para convertir el valor del spinner de anio en int *K
 				String civil = grupoCivil.getSelection().getActionCommand(); //variable para almacenar valor estado civil *K
 				String sexo = grupoSexo.getSelection().getActionCommand(); //variable para almacenar valor sexo del miembro *K
-				
-			
-				
-		
-				
-				
+				//el metodo de abajo conecta con la base de datos e inserta los datos en la base de datos
 				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getName(),anio, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
 				JOptionPane.showMessageDialog(null, "Registro completado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
