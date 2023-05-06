@@ -144,24 +144,30 @@ public class AgregarCuenta extends JPanel {
 		add(lblSexo_1);
 		
 		JRadioButton rdbtnHombre_1 = new JRadioButton("Hombre");
+		rdbtnHombre_1.setActionCommand("Hombre");
 		rdbtnHombre_1.setBounds(82, 180, 70, 23);
 		add(rdbtnHombre_1);
 		
+		//representa el botton de mujer en la seleccion de sexo
 		JRadioButton rdbtnMujer_1 = new JRadioButton("Mujer");
+		rdbtnMujer_1.setActionCommand("Mujer"); ////Tuve que anadir esta linea para poder ingresar este dato en la base de datos *K
 		rdbtnMujer_1.setBounds(154, 180, 70, 23);
 		add(rdbtnMujer_1);
 		
+		//selector del dia de nacimiento
 		JSpinner spinnerDia_1 = new JSpinner();
 		spinnerDia_1.setBounds(35, 152, 37, 20);
 		spinnerDia_1.setToolTipText("Ingresar dia de nacimiento");
 		spinnerDia_1.setForeground(SystemColor.menu);
 		add(spinnerDia_1);
 		
+		//Etiqueta que indica el formato de como se introduce la fecha de nacimiento
 		JLabel lblNacimientoddmmaaaa_1 = new JLabel("Fecha de nacimiento (dd/mm/aaaa):");
 		lblNacimientoddmmaaaa_1.setBounds(25, 110, 218, 44);
 		lblNacimientoddmmaaaa_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblNacimientoddmmaaaa_1);
 		
+		//Selector del mes de nacimiento del miembro
 		JComboBox cBoxMes = new JComboBox();
 		cBoxMes.setBounds(82, 151, 89, 22);
 		cBoxMes.setToolTipText("Elegir mes de nacimiento\r\n");
@@ -169,6 +175,8 @@ public class AgregarCuenta extends JPanel {
 				"Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
 		add(cBoxMes);
 		
+		
+		//Selector del anio de nacimiento del miembro
 		JSpinner spinnerAño = new JSpinner();
 		spinnerAño.setBounds(181, 152, 48, 20);
 		spinnerAño.setModel(new SpinnerListModel(new String[] {"1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910",
@@ -181,25 +189,30 @@ public class AgregarCuenta extends JPanel {
 		spinnerAño.setToolTipText("Ingresar año de nacimiento");
 		add(spinnerAño);
 		
+		//Etiqueta que representa el estado civil del miembro *K
 		JLabel lblEstadoCivil_1 = new JLabel("Estado civil:");
 		lblEstadoCivil_1.setBounds(224, 184, 77, 14);
 		lblEstadoCivil_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblEstadoCivil_1);
 		
+		//representa el boton de soltero en el programa
 		JRadioButton rdbtnSoltero_1 = new JRadioButton("Soltero");
+		rdbtnSoltero_1.setActionCommand("Soltero"); //Tuve que anadir esta linea para poder ingresar este dato en la base de datos *K
 		rdbtnSoltero_1.setBounds(302, 180, 70, 23);
 		add(rdbtnSoltero_1);
-
+		
+        // representa el boton de casado en el programa
 		JRadioButton rdbtnCasado_1 = new JRadioButton("Casado");
+		rdbtnCasado_1.setActionCommand("Casado"); //Tuve que anadir esta linea para poder ingresar este dato en la base de datos *K
 		rdbtnCasado_1.setBounds(374, 180, 73, 23);
 		add(rdbtnCasado_1);
 		
-		//Este objeto permite que solo se pueda elegir una opcion en el panel de los casados
+		//Este objeto permite que solo se pueda elegir una opcion en el panel de los casados * K
 		ButtonGroup grupoCivil = new ButtonGroup();
 		grupoCivil.add(rdbtnCasado_1);
 		grupoCivil.add(rdbtnSoltero_1);
 		
-		//Este objeto permite que solo se pueda elegir una opcion el panel de sexo
+		//Este objeto permite que solo se pueda elegir una opcion el panel de sexo, tambien ayuda a ver cual esta checado *K
 		ButtonGroup grupoSexo = new ButtonGroup();
 		grupoSexo.add(rdbtnHombre_1);
 		grupoSexo.add(rdbtnMujer_1);
@@ -208,21 +221,14 @@ public class AgregarCuenta extends JPanel {
 		btnTerminar_1.setBounds(483, 346, 89, 23);
 		btnTerminar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int dia = (Integer)spinnerDia_1.getValue(); //Para convertir el valor del spinner de dias en int
-				int anio = (Integer)spinnerAño.getValue(); //para convertir el valor del spinner de anio en int
-				String civil = ""; //variable para almacenar valor estado civil
-				String sexo = ""; //variable para almacenar valor sexo del miembro
-				if (rdbtnCasado_1.isSelected()) { //esto determina cual de los dos botones esta seleccionado y toma el valor del apropiado
-					civil = rdbtnCasado_1.getText();
-				} else {
-					civil = rdbtnSoltero_1.getText();
-				}
+				Integer dia = Integer.parseInt(spinnerDia_1.getValue().toString()); //Para convertir el valor del spinner de dias en int *K
+				Integer anio = Integer.parseInt(spinnerAño.getValue().toString()); //para convertir el valor del spinner de anio en int *K
+				String civil = grupoCivil.getSelection().getActionCommand(); //variable para almacenar valor estado civil *K
+				String sexo = grupoSexo.getSelection().getActionCommand(); //variable para almacenar valor sexo del miembro *K
 				
-				if (rdbtnHombre.isSelected()) {
-					sexo = rdbtnHombre.getText();
-				} else {
-					sexo = rdbtnMujer.getText();
-				}
+			
+				
+		
 				
 				
 				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getName(),anio, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
