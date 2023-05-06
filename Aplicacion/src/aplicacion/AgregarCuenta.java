@@ -1,6 +1,10 @@
 package aplicacion;
 
 import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,6 +19,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerListModel;
 import java.awt.Color;
@@ -180,6 +185,9 @@ public class AgregarCuenta extends JPanel {
 		btnTerminar_1.setBounds(483, 346, 89, 23);
 		btnTerminar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int dia = (Integer)spinnerDia_1.getValue();
+				int anio = (Integer)spinnerAño.getValue();
+				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getToolTipText(), anio, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
 				JOptionPane.showMessageDialog(null, "Registro completado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -197,5 +205,18 @@ public class AgregarCuenta extends JPanel {
 		JRadioButton rdbtnCasado_1 = new JRadioButton("Casado");
 		rdbtnCasado_1.setBounds(374, 180, 73, 23);
 		add(rdbtnCasado_1);
+		
+		
+		//Este objeto permite que solo se pueda elegir una opcion en el panel de los casados
+		ButtonGroup grupoCivil = new ButtonGroup();
+		grupoCivil.add(rdbtnCasado_1);
+		grupoCivil.add(rdbtnSoltero_1);
+		
+		//Este objeto permite que solo se pueda elegir una opcion el panel de sexo
+		ButtonGroup grupoSexo = new ButtonGroup();
+		grupoSexo.add(rdbtnHombre_1);
+		grupoSexo.add(rdbtnMujer_1);
+		
+	
 	}
 }

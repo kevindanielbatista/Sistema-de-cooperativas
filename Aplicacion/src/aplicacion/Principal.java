@@ -68,6 +68,9 @@ public class Principal extends JFrame {
 	 */
 	
 	public void inicializar() {
+		Conexion.connect(); //conexion a la base de datos 
+		
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\icons\\iPrincipal.jpg"));
 		setTitle("SISTEMA DE COOPERATIVA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
