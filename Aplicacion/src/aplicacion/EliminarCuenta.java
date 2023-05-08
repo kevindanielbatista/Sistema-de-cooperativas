@@ -14,7 +14,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 public class EliminarCuenta extends JPanel {
-	private JTextField textField;
+	private JTextField textoCuenta;
 
 	/**
 	 * Create the panel.
@@ -34,10 +34,10 @@ public class EliminarCuenta extends JPanel {
 		lblNoRegistro.setBounds(412, 11, 89, 15);
 		add(lblNoRegistro);
 		
-		textField = new JTextField();
-		textField.setBounds(80, 45, 105, 20);
-		add(textField);
-		textField.setColumns(10);
+		textoCuenta = new JTextField();
+		textoCuenta.setBounds(80, 45, 105, 20);
+		add(textoCuenta);
+		textoCuenta.setColumns(10);
 		
 		JLabel lblComentario = new JLabel("Comentario:");
 		lblComentario.setBounds(26, 271, 65, 14);
@@ -55,6 +55,7 @@ public class EliminarCuenta extends JPanel {
 		JButton btnTerminar_1 = new JButton("Terminar");
 		btnTerminar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Conexion.borrar(textoCuenta.getText());
 				JOptionPane.showMessageDialog(null, "Registro eliminado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

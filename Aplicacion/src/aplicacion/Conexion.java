@@ -56,4 +56,21 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }
+    
+    public static void borrar(String cedula) {
+        String sql = "DELETE FROM miembros WHERE cedula = ?";
+
+        try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, cedula);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }  
