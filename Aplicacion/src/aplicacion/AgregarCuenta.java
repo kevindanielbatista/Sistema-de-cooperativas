@@ -226,7 +226,7 @@ public class AgregarCuenta extends JPanel {
 				String civil = grupoCivil.getSelection().getActionCommand(); //variable para almacenar valor estado civil *K
 				String sexo = grupoSexo.getSelection().getActionCommand(); //variable para almacenar valor sexo del miembro *K
 				//el metodo de abajo conecta con la base de datos e inserta los datos en la base de datos
-				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getName(),anio, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
+				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getSelectedItem().toString(),anio, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
 				JOptionPane.showMessageDialog(null, "Registro completado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
