@@ -1,36 +1,52 @@
 package aplicacion;
 
-import javax.swing.JPanel;
-import java.awt.Rectangle;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
-import java.awt.Color;
+import javax.swing.JFrame;
 
-public class Configuracion extends JPanel {
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
+public class Configuracion extends JFrame {
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Configuracion frame = new Configuracion();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the panel.
 	 */
+	
 	public Configuracion() {
-		setBackground(Color.LIGHT_GRAY);
-		setBounds(new Rectangle(0, 81, 584, 380));
-		setLayout(null);
-		
-		JLabel lblConfiguracion = new JLabel("CONFIGURACION");
-		lblConfiguracion.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblConfiguracion.setBounds(26, 11, 121, 15);
-		add(lblConfiguracion);
+		getContentPane().setBackground(SystemColor.controlShadow);
+		setTitle("CONFIGURACION");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(500, 400);
+		setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
 		
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(385, 346, 89, 23);
-		add(btnGuardar);
+		btnGuardar.setBounds(310, 320, 80, 25);
+		getContentPane().add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(484, 346, 89, 23);
-		add(btnCancelar);
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(394, 320, 80, 25);
+		getContentPane().add(btnCancelar);
 
 	}
 
