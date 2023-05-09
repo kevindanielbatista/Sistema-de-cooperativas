@@ -1,42 +1,21 @@
 package aplicacion;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Canvas;
 import java.awt.Color;
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JMenu;
-import javax.swing.JCheckBoxMenuItem;
-import java.awt.Dimension;
 import javax.swing.JMenuBar;
-import java.awt.Label;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Font;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JToolBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JDesktopPane;
-import javax.swing.JButton;
-import javax.swing.border.LineBorder;
-import java.awt.Panel;
-import javax.swing.JTabbedPane;
-import javax.swing.JInternalFrame;
-import java.awt.Rectangle;
 import javax.swing.JTextPane;
-import javax.swing.JComboBox;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.Toolkit;
-import javax.swing.JScrollBar;
 import java.awt.SystemColor;
-import javax.swing.Box;
 
 public class Principal extends JFrame {
 
@@ -68,13 +47,11 @@ public class Principal extends JFrame {
 	 */
 	
 	public void inicializar() {
-		Conexion.connect(); //conexion a la base de datos 
-		
-		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\victo\\OneDrive\\Escritorio\\Sistema-de-cooperativas-main\\icons\\iPrincipal.jpg"));
 		setTitle("SISTEMA DE COOPERATIVA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 150, 600, 500);
+		setSize(600, 500);
+		setLocationRelativeTo(null);
 		contentPrincipal = new JPanel();
 		contentPrincipal.setBackground(new Color(153, 255, 153));
 		contentPrincipal.setBorder(null);
@@ -120,21 +97,23 @@ public class Principal extends JFrame {
 		toolBar.setBounds(0, 0, 319, 25);
 		contentPrincipal.add(toolBar);
 		
-		Button btnAtras = new Button("Atras");
-		btnAtras.setBackground(Color.LIGHT_GRAY);
-		toolBar.add(btnAtras);
-		
-		Button btnAdelante = new Button("Adelante\r\n");
-		btnAdelante.setFont(null);
-		btnAdelante.setForeground(Color.BLACK);
-		btnAdelante.setBackground(Color.LIGHT_GRAY);
-		toolBar.add(btnAdelante);
-		
 		Button btnAyuda = new Button("Ayuda");
+		btnAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ayuda ayuda = new Ayuda();
+				ayuda.setVisible(true);
+			}
+		});
 		btnAyuda.setBackground(Color.LIGHT_GRAY);
 		toolBar.add(btnAyuda);
 		
 		Button btnConfiguracion = new Button("Configuracion");
+		btnConfiguracion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Configuracion ajustes = new Configuracion();
+				ajustes.setVisible(true);
+			}
+		});
 		toolBar.add(btnConfiguracion);
 		btnConfiguracion.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnConfiguracion.setBackground(Color.LIGHT_GRAY);
@@ -197,31 +176,16 @@ public class Principal extends JFrame {
 		JMenuItem mntmRetenerCuenta = new JMenuItem("RETENER CUENTA");
 		mnCUENTAS.add(mntmRetenerCuenta);
 		
-		JMenu mnHistorial = new JMenu("HISTORIAL");
-		mnRegistro.add(mnHistorial);
-		
-		JMenuItem mntmCuentasAgregadas = new JMenuItem("CUENTAS AGREGADAS");
-		mnHistorial.add(mntmCuentasAgregadas);
-		
-		JMenuItem mntmCuentasEliminadas = new JMenuItem("CUENTAS ELIMINADAS");
-		mnHistorial.add(mntmCuentasEliminadas);
-		
-		JMenuItem mntmCuentasSuspendidas = new JMenuItem("CUENTAS SUSPENDIDAS");
-		mnHistorial.add(mntmCuentasSuspendidas);
-		
-		JMenuItem mntmCuentasRetenidas = new JMenuItem("CUENTAS RETENIDAS");
-		mnHistorial.add(mntmCuentasRetenidas);
-		
-		JMenuItem mntmCuentasAbandonadas = new JMenuItem("CUENTAS ABANDONADAS");
-		mnHistorial.add(mntmCuentasAbandonadas);
-		mntmRetenerCuenta.addActionListener(new ActionListener() {
+		JMenuItem mntmHistorial = new JMenuItem("HISTORIAL");
+		mnRegistro.add(mntmHistorial);
+		mntmHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RetenerCuenta retenerCuenta = new RetenerCuenta();
-				retenerCuenta.setBounds(0, 81, 582, 380);
-				retenerCuenta.setLocation(0, 0);
+				Historial_de_Registro historialR = new Historial_de_Registro();
+				historialR.setBounds(0, 81, 582, 380);
+				historialR.setLocation(0, 0);
 				
 				pContenido.removeAll();
-				pContenido.add(retenerCuenta, BorderLayout.CENTER);
+				pContenido.add(historialR, BorderLayout.CENTER);
 				pContenido.revalidate();
 				pContenido.repaint();
 			}
@@ -276,6 +240,36 @@ public class Principal extends JFrame {
 			}
 		});
 		mnNuevaTransaccion.add(mntmRetiro);
+		
+		JMenuItem mntmPrestamo = new JMenuItem("PRESTAMO");
+		mntmPrestamo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Prestamo prestamo = new Prestamo();
+				prestamo.setBounds(0, 81, 582, 380);
+				prestamo.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(prestamo, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
+		mnNuevaTransaccion.add(mntmPrestamo);
+		
+		JMenuItem mntmHTransacciones = new JMenuItem("HISTORIAL");
+		mnTransacciones.add(mntmHTransacciones);
+		mntmHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Historial_de_Transacciones historialT = new Historial_de_Transacciones();
+				historialT.setBounds(0, 81, 582, 380);
+				historialT.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(historialT, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
 		
 		JMenu mnReclamaciones = new JMenu("RECLAMACIONES");
 		menuBar.add(mnReclamaciones);
