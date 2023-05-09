@@ -217,12 +217,12 @@ public class AgregarCuenta extends JPanel {
 		grupoSexo.add(rdbtnHombre_1);
 		grupoSexo.add(rdbtnMujer_1);
 		
-		JButton btnTerminar_1 = new JButton("Terminar");
-		btnTerminar_1.setBounds(483, 346, 89, 23);
-		btnTerminar_1.addActionListener(new ActionListener() {
+		JButton btnGuardar = new JButton("Terminar");
+		btnGuardar.setBounds(483, 346, 89, 23);
+		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer dia = Integer.parseInt(spinnerDia_1.getValue().toString()); //Para convertir el valor del spinner de dias en int *K
-				Integer anio = Integer.parseInt(spinnerAño.getValue().toString()); //para convertir el valor del spinner de anio en int *K
+				Integer año = Integer.parseInt(spinnerAño.getValue().toString()); //para convertir el valor del spinner de anio en int *K
 				String civil = grupoCivil.getSelection().getActionCommand(); //variable para almacenar valor estado civil *K
 				String sexo = grupoSexo.getSelection().getActionCommand(); //variable para almacenar valor sexo del miembro *K
 				//el metodo de abajo conecta con la base de datos e inserta los datos en la base de datos
@@ -230,7 +230,7 @@ public class AgregarCuenta extends JPanel {
 				JOptionPane.showMessageDialog(null, "Registro completado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		add(btnTerminar_1);
+		add(btnGuardar);
 		
 		
 
