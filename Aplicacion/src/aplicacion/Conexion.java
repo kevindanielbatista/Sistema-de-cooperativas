@@ -35,7 +35,7 @@ public class Conexion {
     
     //Usamos una funcion publica para insertar datos que toma todos los datos necesarios para cada columna
     public static void insertarDatos(String nombre, String cedula, String apellidos, int dia_nacimiento, String mes_nacimiento, int ano_nacimiento, String sexo, String est_civil, String correo, String telefono, String direccion) {
-        String sql = "INSERT INTO miembros(nombre,cedula,apellidos,dia_nacimiento,mes_nacimiento,ano_nacimiento,sexo,est_civil,correo,telefono,direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO miembros_ahorro(nombre,cedula,apellidos,dia_nacimiento,mes_nacimiento,ano_nacimiento,sexo,est_civil,correo,telefono,direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
         //Aqui se insertan los datos uno por uno en cada columna
         try (Connection conn = connect();
