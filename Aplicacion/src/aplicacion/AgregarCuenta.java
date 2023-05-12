@@ -86,7 +86,7 @@ public class AgregarCuenta extends JPanel {
 		add(lblTipoDeCuenta);
 		
 		JComboBox cBoxTipo_de_Cuenta = new JComboBox();
-		cBoxTipo_de_Cuenta.setModel(new DefaultComboBoxModel(new String[] {"Ahorro ", "Credito", "Aportaciones"}));
+		cBoxTipo_de_Cuenta.setModel(new DefaultComboBoxModel(new String[] {"Ahorro", "Credito", "Aportaciones", "Juvenil"}));
 		cBoxTipo_de_Cuenta.setToolTipText("Elegir tipo de cuenta");
 		cBoxTipo_de_Cuenta.setBounds(339, 48, 89, 22);
 		add(cBoxTipo_de_Cuenta);
@@ -226,7 +226,17 @@ public class AgregarCuenta extends JPanel {
 				String civil = grupoCivil.getSelection().getActionCommand(); //variable para almacenar valor estado civil *K
 				String sexo = grupoSexo.getSelection().getActionCommand(); //variable para almacenar valor sexo del miembro *K
 				//el metodo de abajo conecta con la base de datos e inserta los datos en la base de datos
-				Conexion.insertarDatos(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getSelectedItem().toString(),año, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
+				
+				if(cBoxTipo_de_Cuenta.getSelectedItem().toString().equals("Ahorro")) { //determina si la cuenta sera de ahorro u  otro tipo
+					Conexion.insertarDatosAhorro(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getSelectedItem().toString(),año, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
+				} else if (cBoxTipo_de_Cuenta.getSelectedItem().toString().equals("Credito")) {
+					Conexion.insertarDatosCredito(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getSelectedItem().toString(),año, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
+				} else if (cBoxTipo_de_Cuenta.getSelectedItem().toString().equals("Aportaciones")) {
+					Conexion.insertarDatosAportaciones(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getSelectedItem().toString(),año, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
+				} else {
+					Conexion.insertarDatosJuvenil(textNombre.getText(), textCedula.getText(), textApellidos.getText(), dia, cBoxMes.getSelectedItem().toString(),año, sexo, civil, textCorreo.getText(), textTelefono_4.getText(), textDireccion.getText());
+				}
+
 				JOptionPane.showMessageDialog(null, "Registro completado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

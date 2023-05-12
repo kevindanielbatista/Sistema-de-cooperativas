@@ -34,7 +34,7 @@ public class Conexion {
 	}
     
     //Usamos una funcion publica para insertar datos que toma todos los datos necesarios para cada columna
-    public static void insertarDatos(String nombre, String cedula, String apellidos, int dia_nacimiento, String mes_nacimiento, int ano_nacimiento, String sexo, String est_civil, String correo, String telefono, String direccion) {
+    public static void insertarDatosAhorro(String nombre, String cedula, String apellidos, int dia_nacimiento, String mes_nacimiento, int ano_nacimiento, String sexo, String est_civil, String correo, String telefono, String direccion) {
         String sql = "INSERT INTO miembros_ahorro(nombre,cedula,apellidos,dia_nacimiento,mes_nacimiento,ano_nacimiento,sexo,est_civil,correo,telefono,direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
         //Aqui se insertan los datos uno por uno en cada columna
@@ -56,6 +56,81 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }
+    
+    //Usamos una funcion publica para insertar datos que toma todos los datos necesarios para cada columna
+    public static void insertarDatosCredito(String nombre, String cedula, String apellidos, int dia_nacimiento, String mes_nacimiento, int ano_nacimiento, String sexo, String est_civil, String correo, String telefono, String direccion) {
+        String sql = "INSERT INTO miembros_credito(nombre,cedula,apellidos,dia_nacimiento,mes_nacimiento,ano_nacimiento,sexo,est_civil,correo,telefono,direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
+        //Aqui se insertan los datos uno por uno en cada columna
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nombre);
+            pstmt.setString(2, cedula);
+            pstmt.setString(3, apellidos);
+            pstmt.setInt(4, dia_nacimiento);
+            pstmt.setString(5, mes_nacimiento);
+            pstmt.setInt(6, ano_nacimiento);
+            pstmt.setString(7, sexo);
+            pstmt.setString(8, est_civil);
+            pstmt.setString(9, correo);
+            pstmt.setString(10, telefono);
+            pstmt.setString(11, direccion);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    //Usamos una funcion publica para insertar datos que toma todos los datos necesarios para cada columna
+    public static void insertarDatosAportaciones(String nombre, String cedula, String apellidos, int dia_nacimiento, String mes_nacimiento, int ano_nacimiento, String sexo, String est_civil, String correo, String telefono, String direccion) {
+        String sql = "INSERT INTO miembros_aportaciones(nombre,cedula,apellidos,dia_nacimiento,mes_nacimiento,ano_nacimiento,sexo,est_civil,correo,telefono,direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
+        //Aqui se insertan los datos uno por uno en cada columna
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nombre);
+            pstmt.setString(2, cedula);
+            pstmt.setString(3, apellidos);
+            pstmt.setInt(4, dia_nacimiento);
+            pstmt.setString(5, mes_nacimiento);
+            pstmt.setInt(6, ano_nacimiento);
+            pstmt.setString(7, sexo);
+            pstmt.setString(8, est_civil);
+            pstmt.setString(9, correo);
+            pstmt.setString(10, telefono);
+            pstmt.setString(11, direccion);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    //Usamos una funcion publica para insertar datos que toma todos los datos necesarios para cada columna
+    public static void insertarDatosJuvenil(String nombre, String cedula, String apellidos, int dia_nacimiento, String mes_nacimiento, int ano_nacimiento, String sexo, String est_civil, String correo, String telefono, String direccion) {
+        String sql = "INSERT INTO miembros_juvenil(nombre,cedula,apellidos,dia_nacimiento,mes_nacimiento,ano_nacimiento,sexo,est_civil,correo,telefono,direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
+        //Aqui se insertan los datos uno por uno en cada columna
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nombre);
+            pstmt.setString(2, cedula);
+            pstmt.setString(3, apellidos);
+            pstmt.setInt(4, dia_nacimiento);
+            pstmt.setString(5, mes_nacimiento);
+            pstmt.setInt(6, ano_nacimiento);
+            pstmt.setString(7, sexo);
+            pstmt.setString(8, est_civil);
+            pstmt.setString(9, correo);
+            pstmt.setString(10, telefono);
+            pstmt.setString(11, direccion);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    
     
     public static void borrar(String cedula) {
         String sql = "DELETE FROM miembros WHERE cedula = ?";
