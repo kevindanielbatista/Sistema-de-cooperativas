@@ -162,7 +162,7 @@ public class Conexion {
 
     
     
-    public static void borrar(String cedula) {
+    public static void borrarAhorro(String cedula) {
         String sql = "DELETE FROM miembros_ahorro WHERE cedula = ?";
 
         try (Connection conn = connect();
@@ -175,5 +175,53 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }
+    
+    public static void borrarCredito(String cedula) {
+        String sql = "DELETE FROM miembros_credito WHERE cedula = ?";
+
+        try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void borrarAportaciones(String cedula) {
+        String sql = "DELETE FROM miembros_aportaciones WHERE cedula = ?";
+
+        try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void borrarJuvenil(String cedula) {
+        String sql = "DELETE FROM miembros_juvenil WHERE cedula = ?";
+
+        try (Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+
+    
+    
+    
 
 }  
