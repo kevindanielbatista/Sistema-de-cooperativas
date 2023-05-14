@@ -134,7 +134,7 @@ public class Conexion {
         String sql2 = "UPDATE miembros_ahorro SET monto = ? WHERE cedula = ?";
         
         try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, cedula);
             ResultSet rs = pstmt.executeQuery();
             
@@ -217,6 +217,202 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }
+    
+    public static String mostrarCuentaAhorro(String cedula) {
+        StringBuilder cuentaAhorroInfo = new StringBuilder();
+
+        String sql = "SELECT * FROM miembros_ahorro WHERE cedula = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String cedu = rs.getString("cedula");
+                String nombre = rs.getString("nombre");
+                String apellidos = rs.getString("apellidos");
+                String dia_nacimiento = String.valueOf(rs.getInt("dia_nacimiento"));
+                String mes_nacimiento = rs.getString("mes_nacimiento");
+                String ano_nacimiento = String.valueOf(rs.getInt("ano_nacimiento"));
+                String sexo = rs.getString("sexo");
+                String est_civil = rs.getString("est_civil");
+                String correo = rs.getString("correo");
+                String telefono = rs.getString("telefono");
+                String direccion = rs.getString("direccion");
+                String monto = String.valueOf(rs.getDouble("monto"));
+                
+                
+
+                cuentaAhorroInfo.append("Cedula: ").append(cedu).append("\n");
+                cuentaAhorroInfo.append("nombre: ").append(nombre).append("\n");
+                cuentaAhorroInfo.append("Apellido: ").append(apellidos).append("\n");
+                cuentaAhorroInfo.append("Dia nacimiento: ").append(dia_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Mes nacimiento: ").append(mes_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Año nacimiento: ").append(ano_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Sexo: ").append(sexo).append("\n");
+                cuentaAhorroInfo.append("Estado civil: ").append(est_civil).append("\n");
+                cuentaAhorroInfo.append("Correo: ").append(correo).append('\n');
+                cuentaAhorroInfo.append("Telefono: ").append(telefono).append("\n");
+                cuentaAhorroInfo.append("Direccion: ").append(direccion).append("\n");
+                cuentaAhorroInfo.append("Monto: ").append(monto).append("\n");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return cuentaAhorroInfo.toString();
+    }
+    
+    public static String mostrarCuentaCredito(String cedula) {
+        StringBuilder cuentaAhorroInfo = new StringBuilder();
+
+        String sql = "SELECT * FROM miembros_credito WHERE cedula = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String cedu = rs.getString("cedula");
+                String nombre = rs.getString("nombre");
+                String apellidos = rs.getString("apellidos");
+                String dia_nacimiento = String.valueOf(rs.getInt("dia_nacimiento"));
+                String mes_nacimiento = rs.getString("mes_nacimiento");
+                String ano_nacimiento = String.valueOf(rs.getInt("ano_nacimiento"));
+                String sexo = rs.getString("sexo");
+                String est_civil = rs.getString("est_civil");
+                String correo = rs.getString("correo");
+                String telefono = rs.getString("telefono");
+                String direccion = rs.getString("direccion");
+                String monto = String.valueOf(rs.getDouble("monto"));
+                
+                
+
+                cuentaAhorroInfo.append("Cedula: ").append(cedu).append("\n");
+                cuentaAhorroInfo.append("nombre: ").append(nombre).append("\n");
+                cuentaAhorroInfo.append("Apellido: ").append(apellidos).append("\n");
+                cuentaAhorroInfo.append("Dia nacimiento: ").append(dia_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Mes nacimiento: ").append(mes_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Año nacimiento: ").append(ano_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Sexo: ").append(sexo).append("\n");
+                cuentaAhorroInfo.append("Estado civil: ").append(est_civil).append("\n");
+                cuentaAhorroInfo.append("Correo: ").append(correo).append('\n');
+                cuentaAhorroInfo.append("Telefono: ").append(telefono).append("\n");
+                cuentaAhorroInfo.append("Direccion: ").append(direccion).append("\n");
+                cuentaAhorroInfo.append("Monto: ").append(monto).append("\n");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return cuentaAhorroInfo.toString();
+    }
+    
+    public static String mostrarCuentaAportaciones(String cedula) {
+        StringBuilder cuentaAhorroInfo = new StringBuilder();
+
+        String sql = "SELECT * FROM miembros_aportaciones WHERE cedula = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String cedu = rs.getString("cedula");
+                String nombre = rs.getString("nombre");
+                String apellidos = rs.getString("apellidos");
+                String dia_nacimiento = String.valueOf(rs.getInt("dia_nacimiento"));
+                String mes_nacimiento = rs.getString("mes_nacimiento");
+                String ano_nacimiento = String.valueOf(rs.getInt("ano_nacimiento"));
+                String sexo = rs.getString("sexo");
+                String est_civil = rs.getString("est_civil");
+                String correo = rs.getString("correo");
+                String telefono = rs.getString("telefono");
+                String direccion = rs.getString("direccion");
+                String monto = String.valueOf(rs.getDouble("monto"));
+                
+                
+
+                cuentaAhorroInfo.append("Cedula: ").append(cedu).append("\n");
+                cuentaAhorroInfo.append("nombre: ").append(nombre).append("\n");
+                cuentaAhorroInfo.append("Apellido: ").append(apellidos).append("\n");
+                cuentaAhorroInfo.append("Dia nacimiento: ").append(dia_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Mes nacimiento: ").append(mes_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Año nacimiento: ").append(ano_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Sexo: ").append(sexo).append("\n");
+                cuentaAhorroInfo.append("Estado civil: ").append(est_civil).append("\n");
+                cuentaAhorroInfo.append("Correo: ").append(correo).append('\n');
+                cuentaAhorroInfo.append("Telefono: ").append(telefono).append("\n");
+                cuentaAhorroInfo.append("Direccion: ").append(direccion).append("\n");
+                cuentaAhorroInfo.append("Monto: ").append(monto).append("\n");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return cuentaAhorroInfo.toString();
+    }
+    
+    public static String mostrarCuentaJuvenil(String cedula) {
+        StringBuilder cuentaAhorroInfo = new StringBuilder();
+
+        String sql = "SELECT * FROM miembros_juvenil WHERE cedula = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cedula);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String cedu = rs.getString("cedula");
+                String nombre = rs.getString("nombre");
+                String apellidos = rs.getString("apellidos");
+                String dia_nacimiento = String.valueOf(rs.getInt("dia_nacimiento"));
+                String mes_nacimiento = rs.getString("mes_nacimiento");
+                String ano_nacimiento = String.valueOf(rs.getInt("ano_nacimiento"));
+                String sexo = rs.getString("sexo");
+                String est_civil = rs.getString("est_civil");
+                String correo = rs.getString("correo");
+                String telefono = rs.getString("telefono");
+                String direccion = rs.getString("direccion");
+                String monto = String.valueOf(rs.getDouble("monto"));
+                
+                
+
+                cuentaAhorroInfo.append("Cedula: ").append(cedu).append("\n");
+                cuentaAhorroInfo.append("nombre: ").append(nombre).append("\n");
+                cuentaAhorroInfo.append("Apellido: ").append(apellidos).append("\n");
+                cuentaAhorroInfo.append("Dia nacimiento: ").append(dia_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Mes nacimiento: ").append(mes_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Año nacimiento: ").append(ano_nacimiento).append("\n");
+                cuentaAhorroInfo.append("Sexo: ").append(sexo).append("\n");
+                cuentaAhorroInfo.append("Estado civil: ").append(est_civil).append("\n");
+                cuentaAhorroInfo.append("Correo: ").append(correo).append('\n');
+                cuentaAhorroInfo.append("Telefono: ").append(telefono).append("\n");
+                cuentaAhorroInfo.append("Direccion: ").append(direccion).append("\n");
+                cuentaAhorroInfo.append("Monto: ").append(monto).append("\n");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return cuentaAhorroInfo.toString();
+    }
+
+
+
+
 
 
 
