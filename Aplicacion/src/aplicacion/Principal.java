@@ -196,6 +196,13 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmCuentasAhorros = new JMenuItem("CUENTAS DE AHORROS");
 		mnCuentas.add(mntmCuentasAhorros);
+		mntmCuentasAhorros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CuentasAhorro ahorro = new CuentasAhorro();
+				ahorro.setBounds(0, 81, 582, 380);
+				ahorro.setLocation(0, 0);
+			}
+		});
 		
 		JMenuItem mntmCuentasCreditos = new JMenuItem("CUENTAS DE CREDITO");
 		mnCuentas.add(mntmCuentasCreditos);

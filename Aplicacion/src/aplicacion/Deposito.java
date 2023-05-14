@@ -14,7 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Deposito extends JPanel {
-	private JTextField textField;
+	private JTextField cuentaTexto;
+	private JTextField montoTexto;
 
 	/**
 	 * Create the panel.
@@ -34,10 +35,10 @@ public class Deposito extends JPanel {
 		lblNoRegistro.setBounds(414, 11, 89, 15);
 		add(lblNoRegistro);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(82, 45, 105, 20);
-		add(textField);
+		cuentaTexto = new JTextField();
+		cuentaTexto.setColumns(10);
+		cuentaTexto.setBounds(82, 45, 105, 20);
+		add(cuentaTexto);
 		
 		JLabel lblComentario = new JLabel("Comentario:");
 		lblComentario.setBounds(28, 271, 65, 14);
@@ -55,12 +56,21 @@ public class Deposito extends JPanel {
 		JButton btnTerminar = new JButton("Terminar");
 		btnTerminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Conexion.depositar(cuentaTexto.getText(),(Double.parseDouble(montoTexto.getText())));
 				JOptionPane.showMessageDialog(null, "Deposito realizado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnTerminar.setBounds(485, 346, 89, 23);
 		add(btnTerminar);
+		
+		JLabel lblMonto = new JLabel("Monto");
+		lblMonto.setBounds(23, 74, 70, 15);
+		add(lblMonto);
+		
+		montoTexto = new JTextField();
+		montoTexto.setBounds(82, 77, 114, 19);
+		add(montoTexto);
+		montoTexto.setColumns(10);
 
 	}
-
 }
