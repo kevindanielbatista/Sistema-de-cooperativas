@@ -1,44 +1,32 @@
 package aplicacion;
 
 import java.awt.EventQueue;
-import javax.swing.JPanel;
+import java.awt.Rectangle;
 
+import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class CuentasAhorro extends JPanel {
+	private JTextField textField;
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CuentasAhorro window = new CuentasAhorro();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public CuentasAhorro () {
+		setBounds(new Rectangle(0, 81, 584, 380));
+		setLayout(null);
+		
+		JLabel lblCuenta = new JLabel("Cuenta");
+		lblCuenta.setBounds(26, 31, 70, 15);
+		add(lblCuenta);
+		
+		textField = new JTextField();
+		textField.setBounds(89, 29, 114, 19);
+		add(textField);
+		textField.setColumns(10);
+		
+		JButton verCuenta = new JButton("Ver cuenta");
+		verCuenta.setBounds(317, 328, 117, 25);
+		add(verCuenta);
 	}
-
-	/**
-	 * Create the application.
-	 */
-	public CuentasAhorro() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
 }

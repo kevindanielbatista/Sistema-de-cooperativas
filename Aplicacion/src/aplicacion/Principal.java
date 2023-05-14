@@ -201,17 +201,59 @@ public class Principal extends JFrame {
 				CuentasAhorro ahorro = new CuentasAhorro();
 				ahorro.setBounds(0, 81, 582, 380);
 				ahorro.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(ahorro, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
 			}
 		});
 		
 		JMenuItem mntmCuentasCreditos = new JMenuItem("CUENTAS DE CREDITO");
 		mnCuentas.add(mntmCuentasCreditos);
+		mntmCuentasCreditos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CuentasCredito credito = new CuentasCredito();
+				credito.setBounds(0, 81, 582, 380);
+				credito.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(credito, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();			
+			}
+		});
 		
 		JMenuItem mntmCuentasAportaciones = new JMenuItem("CUENTAS DE APORTACIONES");
 		mnCuentas.add(mntmCuentasAportaciones);
+		mntmCuentasAportaciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CuentasAportaciones aportaciones = new CuentasAportaciones();
+				aportaciones.setBounds(0, 81, 582, 380);
+				aportaciones.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(aportaciones, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
 		
 		JMenuItem mntmCuentasJuveniles = new JMenuItem("CUENTAS JUVENILES");
 		mnCuentas.add(mntmCuentasJuveniles);
+		mntmCuentasJuveniles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CuentasJuvenil juvenil = new CuentasJuvenil();
+				juvenil.setBounds(0, 81, 582, 380);
+				juvenil.setLocation(0, 0);
+				
+				pContenido.removeAll();
+				pContenido.add(juvenil, BorderLayout.CENTER);
+				pContenido.revalidate();
+				pContenido.repaint();
+			}
+		});
+		
 		JMenu mnTransacciones = new JMenu("TRANSACCIONES");
 		menuBar.add(mnTransacciones);
 		
