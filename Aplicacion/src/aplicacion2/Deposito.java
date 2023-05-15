@@ -106,6 +106,11 @@ public class Deposito extends JPanel {
 		btnCancelar.setBounds(485, 346, 89, 23);
 		add(btnCancelar);
 		
+		JComboBox cBoxTipo_de_Cuenta = new JComboBox();
+		cBoxTipo_de_Cuenta.setModel(new DefaultComboBoxModel(new String[] {"Ahorro", "Credito", "Aportaciones", "Juvenil"}));
+		cBoxTipo_de_Cuenta.setToolTipText("Elegir tipo de cuenta");
+		cBoxTipo_de_Cuenta.setBounds(339, 48, 89, 22);
+		add(cBoxTipo_de_Cuenta);
 		
 		
 
