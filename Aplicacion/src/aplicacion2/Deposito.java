@@ -9,7 +9,10 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,6 +105,10 @@ public class Deposito extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(485, 346, 89, 23);
 		add(btnCancelar);
+		
+		
+		
+
 
 	}
 }

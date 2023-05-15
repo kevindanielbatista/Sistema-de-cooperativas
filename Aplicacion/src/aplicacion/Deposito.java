@@ -8,10 +8,12 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
 
 public class Deposito extends JPanel {
 	private JTextField cuentaTexto;
@@ -53,10 +55,25 @@ public class Deposito extends JPanel {
 		lblDeposito.setBounds(27, 11, 121, 15);
 		add(lblDeposito);
 		
+		JComboBox cBoxTipo_de_Cuenta = new JComboBox();
+		cBoxTipo_de_Cuenta.setModel(new DefaultComboBoxModel(new String[] {"Ahorro", "Credito", "Aportaciones", "Juvenil"}));
+		cBoxTipo_de_Cuenta.setToolTipText("Elegir tipo de cuenta");
+		cBoxTipo_de_Cuenta.setBounds(339, 48, 89, 22);
+		add(cBoxTipo_de_Cuenta);
+
+		
 		JButton btnTerminar = new JButton("Terminar");
 		btnTerminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Conexion.depositar(cuentaTexto.getText(),(Double.parseDouble(montoTexto.getText())));
+				if (cBoxTipo_de_Cuenta.getSelectedItem().toString().equals("Ahorro")) {
+					Conexion.depositarAhorro(cuentaTexto.getText(), Double.parseDouble(montoTexto.getText()));					
+				} else if (cBoxTipo_de_Cuenta.getSelectedItem().toString().equals("Credito")) {
+					Conexion.depositarCredito(cuentaTexto.getText(), Double.parseDouble(montoTexto.getText()));	
+				} else if (cBoxTipo_de_Cuenta.getSelectedItem().toString().equals("Juvenil")) {
+					Conexion.depositarJuvenil(cuentaTexto.getText(), Double.parseDouble(montoTexto.getText()));						
+				} else {
+					Conexion.depositarAportaciones(cuentaTexto.getText(), Double.parseDouble(montoTexto.getText()));						
+				}
 				JOptionPane.showMessageDialog(null, "Deposito realizado", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -71,6 +88,9 @@ public class Deposito extends JPanel {
 		montoTexto.setBounds(82, 77, 114, 19);
 		add(montoTexto);
 		montoTexto.setColumns(10);
+		
+		
+
 
 	}
 }

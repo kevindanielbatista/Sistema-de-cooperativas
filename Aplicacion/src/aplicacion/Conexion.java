@@ -1,10 +1,12 @@
 package aplicacion;
 
-import java.sql.Connection;
+//Esta parte importa los paquetes necesarios para trabajar con SQL
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;  
 import java.sql.DriverManager;  
 import java.sql.SQLException;  
+
    
 public class Conexion {    
 	public static Connection connect() {
@@ -129,9 +131,105 @@ public class Conexion {
         }
     }
     
-    public static void depositar(String cedula, Double monto) {
+    
+    //este metodo toma la cedula y una cantidad de dinero y deposita donde es debido en una cuenta de ahorro
+    
+    public static void depositarAhorro(String cedula, Double monto) {
         String sql = "SELECT monto FROM miembros_ahorro WHERE cedula = ?";
         String sql2 = "UPDATE miembros_ahorro SET monto = ? WHERE cedula = ?";
+        
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cedula);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                Double montoExistente = rs.getDouble("monto");
+                Double nuevoMonto = montoExistente + monto;
+                
+                try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)) {
+                    pstmt2.setDouble(1, nuevoMonto);
+                    pstmt2.setString(2, cedula);
+                    pstmt2.executeUpdate();
+                    System.out.println("Monto actualizado correctamente");
+                } catch (SQLException e) {
+                    System.out.println("Error al ejecutar la actualización: " + e.getMessage());
+                }
+            } else {
+                System.out.println("No se encontró la fila con la cédula especificada");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+    }
+    
+    //este metodo toma la cedula y una cantidad de dinero y deposita donde es debido en una cuenta de ahorro
+    
+    public static void depositarCredito(String cedula, Double monto) {
+        String sql = "SELECT monto FROM miembros_credito WHERE cedula = ?";
+        String sql2 = "UPDATE miembros_credito SET monto = ? WHERE cedula = ?";
+        
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cedula);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                Double montoExistente = rs.getDouble("monto");
+                Double nuevoMonto = montoExistente + monto;
+                
+                try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)) {
+                    pstmt2.setDouble(1, nuevoMonto);
+                    pstmt2.setString(2, cedula);
+                    pstmt2.executeUpdate();
+                    System.out.println("Monto actualizado correctamente");
+                } catch (SQLException e) {
+                    System.out.println("Error al ejecutar la actualización: " + e.getMessage());
+                }
+            } else {
+                System.out.println("No se encontró la fila con la cédula especificada");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+    }
+    
+    //este metodo toma la cedula y una cantidad de dinero y deposita donde es debido en una cuenta de ahorro
+    
+    public static void depositarAportaciones(String cedula, Double monto) {
+        String sql = "SELECT monto FROM miembros_aportaciones WHERE cedula = ?";
+        String sql2 = "UPDATE miembros_aportaciones SET monto = ? WHERE cedula = ?";
+        
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cedula);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                Double montoExistente = rs.getDouble("monto");
+                Double nuevoMonto = montoExistente + monto;
+                
+                try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)) {
+                    pstmt2.setDouble(1, nuevoMonto);
+                    pstmt2.setString(2, cedula);
+                    pstmt2.executeUpdate();
+                    System.out.println("Monto actualizado correctamente");
+                } catch (SQLException e) {
+                    System.out.println("Error al ejecutar la actualización: " + e.getMessage());
+                }
+            } else {
+                System.out.println("No se encontró la fila con la cédula especificada");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+    }
+    
+    //este metodo toma la cedula y una cantidad de dinero y deposita donde es debido en una cuenta de ahorro
+    
+    public static void depositarJuvenil(String cedula, Double monto) {
+        String sql = "SELECT monto FROM miembros_juvenil WHERE cedula = ?";
+        String sql2 = "UPDATE miembros_juvenil SET monto = ? WHERE cedula = ?";
         
         try (Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
